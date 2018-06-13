@@ -17,7 +17,7 @@ public class IntroToHashMaps {
 			ithm.key.put(i, Math.sqrt(i));
 		}
 		for (int i = 0; i < ithm.key.size(); i++) {
-
+			System.out.println("The square root of " + i + " is " + ithm.key.get(i));
 		}
 	}
 
