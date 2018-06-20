@@ -3,6 +3,7 @@ package IntroToHashMaps;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ public class LogSearch implements ActionListener {
 	JButton button;
 	JButton button2;
 	JButton button3;
+	JButton button4;
 	HashMap<Integer, String> hm = new HashMap<Integer, String>();
 
 	LogSearch() {
@@ -23,16 +25,20 @@ public class LogSearch implements ActionListener {
 		button = new JButton();
 		button2 = new JButton();
 		button3 = new JButton();
+		button4 = new JButton();
 		frame.add(panel);
 		panel.add(button);
 		panel.add(button2);
 		panel.add(button3);
+		panel.add(button4);
 		button.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
+		button4.addActionListener(this);
 		button.setText("Enter ID Number");
 		button2.setText("Find ID");
 		button3.setText("View List");
+		button4.setText("Remove Entry");
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -75,8 +81,30 @@ public class LogSearch implements ActionListener {
 		if (e.getSource() == button2) {
 			String idd = JOptionPane.showInputDialog("Find ID");
 			int idnumm = Integer.parseInt(idd);
-			JOptionPane.showMessageDialog(null, hm.get(idnumm));
+			if (hm.containsKey(idnumm)) {
+				JOptionPane.showMessageDialog(null, hm.get(idnumm));
+			} else {
+				JOptionPane.showMessageDialog(null, "That is not an ID number");
+			}
 
+		}
+		if (e.getSource() == button3) {
+			String s = "";
+			for (Map.Entry<Integer, String> entry : hm.entrySet()) {
+				s += "ID: " + entry.getKey();
+				s += " Name: " + entry.getValue();
+				s += "\n";
+			}
+			JOptionPane.showMessageDialog(null, s);
+		}
+		if (e.getSource() == button4) {
+			String iddd = JOptionPane.showInputDialog("Enter ID");
+			int idnummm = Integer.parseInt(iddd);
+			if (hm.containsKey(idnummm)) {
+				hm.remove(idnummm);
+			} else {
+				JOptionPane.showMessageDialog(null, "That is not an ID number");
+			}
 		}
 
 	}
